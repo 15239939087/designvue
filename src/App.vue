@@ -1,32 +1,39 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+  <div>
     <router-view />
   </div>
 </template>
+<script>
+// 导入animate.css
+import "animate.css";
+export default {
+  name: "App",
+  mounted() {
+    const isDarkMode = this.$store.getters.isDarkMode;
+    document.body.style.background = isDarkMode ? "#212c4f" : "#f0f3f5";
+  }
+};
+</script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+// 引入全局样式
+@import "@/styles/colors.scss";
+@import "@/styles/typography.scss";
+
+* {
+  transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-#nav {
-  padding: 30px;
+body {
+  margin: 0;
+  background: $dark-blue;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+h1 {
+  @include heading-1;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+p {
+  @include large-text-bold($purple);
 }
 </style>
